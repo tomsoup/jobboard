@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Platform } from 'react-native';
+import { Button, Icon } from 'react-native-elements';
+import { connect } from 'react-redux';
+import { clearLikedJobs } from '../actions';
 
 class SettingScreen extends Component {
+  static navigationOptions = {
+    headerStyle: {
+        marginTop: Platform.OS === 'android' ? 24 : 0
+    },
+    tabBarIcon: ({ tintColor }) => {
+        return (
+          <Icon name="favorite" size={25} color={tintColor} />
+        );
+
+    }
+  }
 
   render() {
     const { container } = styles;
     return (
       <View style={container}>
-        <Text>
-          SettingScreen
-        </Text>
+        <Button
+          title='Reset Liked Jobs'
+          large
+          icon={{ name: 'delete-forever' }}
+          backgroundColor="#f44336"
+          onPress={this.props.clearLikedJobs}
+        />
       </View>
     );
   }
@@ -17,9 +35,8 @@ class SettingScreen extends Component {
 
 const styles = {
   container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    flex: 1
   }
 };
-export default SettingScreen;
+
+export default connect(null, { clearLikedJobs })(SettingScreen);

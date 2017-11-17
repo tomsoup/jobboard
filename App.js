@@ -1,4 +1,3 @@
-import Expo from 'expo';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
@@ -11,7 +10,7 @@ import DeckScreen from './screens/DeckScreen';
 import SettingScreen from './screens/SettingScreen';
 import ReviewScreen from './screens/ReviewScreen';
 
-class App extends React.Component {
+export default class App extends React.Component {
   render() {
     const MainNavigator = TabNavigator({
       welcome: { screen: WelcomeScreen },
@@ -26,12 +25,20 @@ class App extends React.Component {
               setting: { screen: SettingScreen }
             })
           }
+        }, {
+          tabBarPosition: 'bottom',
+          // swipeEnabled: false,
+          tabBarOptions: {
+            labelStyle: {
+              fontSize: 12
+            }
+          }
         })
       }
     }, {
       lazyLoad: true,
       navigationOptions: {
-        tabBar: { visible: false }
+        tabBarVisible: false
       }
     });
 
@@ -50,5 +57,3 @@ const styles = StyleSheet.create({
     flex: 1,
   }
 });
-
-Expo.registerRootComponent(App);

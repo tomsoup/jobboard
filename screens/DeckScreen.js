@@ -14,7 +14,6 @@ class DeckScreen extends Component {
           <Icon name="description" size={25} color={tintColor} />
         );
       }
-
   }
   renderCard(job) {
     const initialRegion = {

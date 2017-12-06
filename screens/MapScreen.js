@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View, ActivityIndicator, Platform } from 'react-native';
 import { MapView } from 'expo';
 import { connect } from 'react-redux';
 import { Button, Icon } from 'react-native-elements';
@@ -36,7 +36,6 @@ class MapScreen extends Component {
   }
 
   onButtonPress = () => {
-    console.log('pressed');
     this.props.fetchJobs(this.state.region, () => {
       this.props.navigation.navigate('deck');
     });
@@ -57,6 +56,8 @@ class MapScreen extends Component {
           style={{ flex: 1 }}
           region={this.state.region}
           onRegionChangeComplete={this.onRegionChangeComplete}
+          scrollEnabled={false}
+          cacheEnabled={Platform.OS === 'android'}
         />
       <View style={styles.buttonContainer} >
         <Button

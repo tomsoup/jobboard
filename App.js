@@ -12,9 +12,10 @@ import ReviewScreen from './screens/ReviewScreen';
 
 export default class App extends React.Component {
   render() {
+        console.disableYellowBox = true;
     const MainNavigator = TabNavigator({
-      welcome: { screen: WelcomeScreen },
-      auth: { screen: AuthScreen },
+      // welcome: { screen: WelcomeScreen },
+      // auth: { screen: AuthScreen },
       main: {
         screen: TabNavigator({
           map: { screen: MapScreen },
